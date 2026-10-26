@@ -1,0 +1,132 @@
+
+
+# ========== USER CREATION =========== #
+
+# api call for creating user
+###
+POST http://127.0.0.1:8000/film/register/
+Content-Type: application/json
+
+{
+    "username":"userA",
+    "email":"userA@gmail.com",
+    "password":"userA123"
+}
+
+# api call for token authentication
+###
+POST http://127.0.0.1:8000/film/token/
+Content-Type: application/json
+
+{
+    "username":"userA",
+    "password":"userA123"
+}
+
+
+# ========== MOVIE LIST,CREATE =========== #
+
+# api call for listing movies
+###
+GET http://127.0.0.1:8000/film/movie/
+Accept: application/json
+Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
+
+# api call for creating movies
+###
+POST http://127.0.0.1:8000/film/movie/
+Content-Type: application/json
+Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
+
+{
+    "title":"kgf 2",
+    "language":"kannada",
+    "release_year":2024,
+    "duration":"2hr 60min",
+    "rating":9.5
+}
+
+# ========== MOVIE RETRIEVE,UPDATE,DELETE =========== #
+
+
+# api call for listing one movie
+###
+GET http://127.0.0.1:8000/film/movie/1/
+Accept: application/json
+Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
+
+# api call for updating one movies
+###
+PUT http://127.0.0.1:8000/film/movie/1/
+Content-Type: application/json
+Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
+
+{
+  "id": 1,
+  "owner": "userA",
+  "title": "jailer 2",
+  "language": "tamil",
+  "release_year": 2026,
+  "duration": "3hr 5min",
+  "rating": "9",
+  "created_at": "2026-10-26T12:35:23.250990Z",
+  "updated_at": "2026-10-26T12:35:23.250990Z"
+}
+
+# api call for deleting one movie
+###
+DELETE http://127.0.0.1:8000/film/movie/5/
+Accept: application/json
+Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
+
+
+# ========== SONG CREATE =========== #
+
+
+# api call for creating songs
+###
+POST http://127.0.0.1:8000/music/movie/1/song/
+Content-Type: application/json
+Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
+
+{
+    "title":"hukum",
+    "language":"tamil",
+    "duration":"2.30 min",
+    "rating":8,
+    "sung_by":"anirudh"
+}
+
+# ========== SONG RETRIEVE,UPDATE,DELETE =========== #
+
+# api call for listing one song detail
+###
+GET http://127.0.0.1:8000/music/song/1/
+Accept: application/json
+Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
+
+# api call for updating one song detail
+###
+PUT http://127.0.0.1:8000/music/song/1/
+Content-Type: application/json
+Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
+
+{
+  "id": 1,
+  "owner": "userA",
+  "movie": "jailer 2",
+  "track_number": 1,
+  "title": "ala bolelo",
+  "language": "malayalam+tamil",
+  "duration": "5 min",
+  "rating": "9.5",
+  "sung_by": "singer BCD",
+  "created_at": "2026-10-26T13:29:54.667444Z",
+  "updated_at": "2026-10-26T13:29:54.667444Z"
+}
+
+# api call for deleting one song detail
+###
+DELETE http://127.0.0.1:8000/music/song/3/
+Accept: application/json
+Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
