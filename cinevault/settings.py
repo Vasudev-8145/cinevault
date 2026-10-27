@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'film',
     'rest_framework.authtoken',
     'music',
+    'opinion',
 ]
 
 MIDDLEWARE = [

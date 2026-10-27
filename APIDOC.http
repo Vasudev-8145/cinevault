@@ -2,6 +2,17 @@
 
 # ========== USER CREATION =========== #
 
+# api call for creating admin
+###
+POST http://127.0.0.1:8000/film/admin/
+Content-Type: application/json
+
+{
+    "username":"adminA",
+    "email":"adminA@gmail.com",
+    "password":"adminA123"
+}
+
 # api call for creating user
 ###
 POST http://127.0.0.1:8000/film/register/
@@ -19,8 +30,8 @@ POST http://127.0.0.1:8000/film/token/
 Content-Type: application/json
 
 {
-    "username":"userA",
-    "password":"userA123"
+    "username":"adminA",
+    "password":"adminA123"
 }
 
 
@@ -28,15 +39,15 @@ Content-Type: application/json
 
 # api call for listing movies
 ###
-GET http://127.0.0.1:8000/film/movie/
+GET http://127.0.0.1:8000/film/movie/all/
 Accept: application/json
-Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
+Authorization: Token 868d0868d7a03ab11e4fe26fd2faf3101073071b
 
 # api call for creating movies
 ###
-POST http://127.0.0.1:8000/film/movie/
+POST http://127.0.0.1:8000/film/movie/add/
 Content-Type: application/json
-Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
+Authorization: Token 868d0868d7a03ab11e4fe26fd2faf3101073071b
 
 {
     "title":"kgf 2",
@@ -51,26 +62,28 @@ Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
 
 # api call for listing one movie
 ###
-GET http://127.0.0.1:8000/film/movie/1/
+GET http://127.0.0.1:8000/film/movie/6/
 Accept: application/json
-Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
+Authorization: Token 868d0868d7a03ab11e4fe26fd2faf3101073071b
 
 # api call for updating one movies
 ###
-PUT http://127.0.0.1:8000/film/movie/1/
+PUT http://127.0.0.1:8000/film/movie/6/
 Content-Type: application/json
 Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
 
 {
-  "id": 1,
-  "owner": "userA",
-  "title": "jailer 2",
-  "language": "tamil",
-  "release_year": 2026,
-  "duration": "3hr 5min",
-  "rating": "9",
-  "created_at": "2026-10-26T12:35:23.250990Z",
-  "updated_at": "2026-10-26T12:35:23.250990Z"
+  "id": 6,
+  "owner": "adminA",
+  "song_count": 0,
+  "songs": [],
+  "title": "kgf 2",
+  "language": "telugu",
+  "release_year": 2024,
+  "duration": "2hr 60min",
+  "rating": "9.50",
+  "created_at": "2026-10-27T15:22:28.597222Z",
+  "updated_at": "2026-10-27T15:22:28.597222Z"
 }
 
 # api call for deleting one movie

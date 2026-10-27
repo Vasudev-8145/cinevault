@@ -10,6 +10,28 @@ from film.serializers import UserSerializer,MovieSerializer
 from film.models import Movie
 from film.permissions import IsOwner
 
+class AdminCreateView(APIView):
+
+    def post(self,request):
+
+        form_data = request.data
+
+        serializer_instance = UserSerializer(data=form_data)
+
+        if serializer_instance.is_valid():
+
+            cleaned_data = serializer_instance.validated_data
+
+            instance = User.objects.create_superuser(**cleaned_data)
+
+            serializer_instance = UserSerializer(instance)
+
+            return Response(data=serializer_instance.data)
+
+        else:
+
+            return Response(data=serializer_instance.errors)
+
 class UserCreateView(APIView):
 
     def post(self,request):
@@ -32,7 +54,7 @@ class UserCreateView(APIView):
 
             return Response(data=serializer_instance.errors)
 
-class MovieListCreateView(ListAPIView,CreateAPIView):
+class MovieListView(ListAPIView):
 
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
@@ -40,8 +62,14 @@ class MovieListCreateView(ListAPIView,CreateAPIView):
     serializer_class = MovieSerializer
     queryset = Movie.objects.all()
 
-    def perform_create(self, serializer):
+class MoviecreateView(CreateAPIView):
 
+    authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [permissions.IsAdminUser]
+
+    serializer_class = MovieSerializer
+
+    def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 class MovieRetrieveUpdateDeleteView(RetrieveAPIView,UpdateAPIView,DestroyAPIView):

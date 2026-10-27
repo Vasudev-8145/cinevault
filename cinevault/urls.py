@@ -25,4 +25,7 @@ urlpatterns = [
 
     # route to music
     path("music/",include("music.urls")),
+
+    # route to opinion
+    path("opinion/",include("opinion.urls")),
 ]
