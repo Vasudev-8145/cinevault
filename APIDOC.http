@@ -30,8 +30,8 @@ POST http://127.0.0.1:8000/film/token/
 Content-Type: application/json
 
 {
-    "username":"adminA",
-    "password":"adminA123"
+    "username":"userA",
+    "password":"userA123"
 }
 
 
@@ -141,5 +141,57 @@ Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
 # api call for deleting one song detail
 ###
 DELETE http://127.0.0.1:8000/music/song/3/
+Accept: application/json
+Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
+
+
+# ========== REVIEW LIST,CREATE =========== #
+
+
+# api call for listing reviews
+###
+GET http://127.0.0.1:8000/opinion/review/all/
+Accept: application/json
+Authorization: Token 868d0868d7a03ab11e4fe26fd2faf3101073071b
+
+# api call for creating review
+###
+POST http://127.0.0.1:8000/opinion/movie/3/review/
+Content-Type: application/json
+Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
+
+{
+    "message":"not like i accepted",
+    "rating":9
+}
+
+
+# ========== REVIEW RETRIEVE,UPDATE,DELETE =========== #
+
+# api call for listing one review detail
+###
+GET http://127.0.0.1:8000/opinion/review/1/
+Accept: application/json
+Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1
+
+# api call for updating one review detail
+###
+PUT http://127.0.0.1:8000/opinion/review/1/
+Content-Type: application/json
+Authorization: Token 868d0868d7a03ab11e4fe26fd2faf3101073071b
+
+{
+  "id": 1,
+  "movie": "kgf 2",
+  "owner": "userA",
+  "message": "one of the best yash movies",
+  "rating": "9.0",
+  "created_at": "2026-11-01T13:01:20.276902Z",
+  "updated_at": "2026-11-01T13:01:20.276902Z"
+}
+
+# api call for deleting one review detail
+###
+DELETE http://127.0.0.1:8000/opinion/review/2/
 Accept: application/json
 Authorization: Token dad5ee611b3024b23a935fa29e0555d45df9e7a1

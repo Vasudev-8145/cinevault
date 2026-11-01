@@ -5,7 +5,9 @@ from django.contrib.auth.models import User
 
 from film.models import Movie
 from music.models import Song
+from opinion.models import Review
 from music.serializers import SongSerializer
+from opinion.serializers import ReviewSerializer
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -24,6 +26,7 @@ class MovieSerializer(serializers.ModelSerializer):
     song_count = serializers.SerializerMethodField(read_only=True)
 
     songs = serializers.SerializerMethodField(read_only=True)
+    reviews = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
 
@@ -42,5 +45,13 @@ class MovieSerializer(serializers.ModelSerializer):
         song_object = Song.objects.filter(movie=obj)
 
         serializer_instance = SongSerializer(song_object,many=True)
+
+        return serializer_instance.data
+
+    def get_reviews(self,obj):
+
+        review_object = Review.objects.filter(movie=obj)
+
+        serializer_instance = ReviewSerializer(review_object,many=True)
 
         return serializer_instance.data
